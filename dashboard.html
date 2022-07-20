@@ -112,8 +112,9 @@
 
                                                 </div>
                                             </form>
-                                            <p>Total Collection : </p>
-                                            <p>Total Pending Requestes : </p>
+                                            <br>
+                                            <p>Total Collection : <div id="total"></div> </p>
+                                            <p>Total Pending Requestes : <div id="pending"></div> </p>
                                         </div>
                                     </div>
 
@@ -152,9 +153,17 @@
 
     <!-- api -->
     <script src="./js/api/rooturl.js"></script>
-    <script src="./js/api/admin/createWard.js"></script>c
+    <script src="./js/api/admin/createWard.js"></script>
+    <script src="./js/api/ticket/ticketCount.js"></script>
     <script>
-        window.onload=()=>{document.getElementById('form-card').style.display="none"}
+        window.onload=()=>{
+            document.getElementById('form-card').style.display="none"
+            ticketCount().then(e=>{
+            console.log(e);
+            document.getElementById('total').innerHTML=e.total
+            document.getElementById('pending').innerHTML=e.pending
+        })
+        }
         document.getElementById('create-ward').addEventListener('click',()=>{ 
             document.getElementById('form-card').style.display="block"
             document.getElementById('graph-card').style.display="none"
@@ -170,6 +179,7 @@
             if(phoneNumber!==''&&name!==''&&wardNo!=='') createWard(wardNo, name, phoneNumber)
             else alert('Fill the form')
         })
+        
     </script>
 
 </body>
