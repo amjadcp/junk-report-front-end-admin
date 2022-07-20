@@ -1,0 +1,23 @@
+{
+  "name": "junk-report-front-end-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amjadcp/junk-report-front-end-admin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amjadcp/junk-report-front-end-admin/issues"
+  },
+  "homepage": "https://github.com/amjadcp/junk-report-front-end-admin#readme",
+  "dependencies": {
+    "firebase": "^9.9.0"
+  },
+  "type": "module"
+}

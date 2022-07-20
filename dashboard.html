@@ -43,12 +43,41 @@
                                         <h1 class="h3 mb-0 text-gray-800">Calicut Co-operation</h1>
                                     </div>
 
-                                    <div class="card1 card mb-4">
+                                    <div class="card1 card mb-4" id="graph-card">
                                         <div class="card-header">
                                             Graph
                                         </div>
                                         <div class="card-body">
                                             A GRAPH
+                                        </div>
+                                    </div>
+
+                                    <!-- forms card -->
+                                    <div id="form-card" class="card1 card mb-4">
+                                        <div class="card-header">
+                                            Create Ward
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-popup" id="myForm">
+                                                <form>
+                                                    <div class="form-group">
+                                                      <label for="exampleInputEmail1">Ward Number</label>
+                                                      <input type="number" class="form-control" id="wardNo" aria-describedby="emailHelp" placeholder="Enter Ward Number">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Ward Admin's Name</label>
+                                                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter The Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Ward Admin's Phone Number</label>
+                                                        <input type="tel" pattern="[0-9]" class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Enter The Phone Number">
+                                                        <small id="emailHelp" class="form-text text-muted">Enter a valid phone number</small>
+                                                    </div>
+                                                    <input id="create" value="create" type="button" class="btn btn-primary">
+                                                    <!-- <button id="create" class="btn btn-primary">Create</button> -->
+                                                  <button type="button" class="btn cancel" id="close">Close</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -93,9 +122,9 @@
                                             <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
                                         </div>
                                         <div class="card-body">
-                                            <a href="ward.html">View Analytics</a> <br>
-                                            <a href="">Create Ward</a> <br>
-                                            <a href="index.html">Logout</a>
+                                            <a class="btn btn-link" href="ward.html">View Analytics</a> <br>
+                                            <button class="btn btn-link" id="create-ward">Create Ward</button> <br>
+                                            <a class="btn btn-link" href="index.html">Logout</a>
                                         </div>
                                     </div>
 
@@ -113,7 +142,6 @@
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -121,6 +149,28 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- api -->
+    <script src="./js/api/rooturl.js"></script>
+    <script src="./js/api/admin/createWard.js"></script>c
+    <script>
+        window.onload=()=>{document.getElementById('form-card').style.display="none"}
+        document.getElementById('create-ward').addEventListener('click',()=>{ 
+            document.getElementById('form-card').style.display="block"
+            document.getElementById('graph-card').style.display="none"
+         })
+        document.getElementById('close').addEventListener('click',()=>{ 
+            document.getElementById('form-card').style.display="none" 
+            document.getElementById('graph-card').style.display="block"
+        })
+        document.getElementById('create').addEventListener('click', ()=>{
+            let wardNo = document.getElementById('wardNo').value
+            let name = document.getElementById('name').value
+            let phoneNumber = document.getElementById('phoneNumber').value
+            if(phoneNumber!==''&&name!==''&&wardNo!=='') createWard(wardNo, name, phoneNumber)
+            else alert('Fill the form')
+        })
+    </script>
 
 </body>
 

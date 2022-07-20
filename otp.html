@@ -29,7 +29,7 @@
                             <!-- otp input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example3">OTP</label>
-                                <input type="text" id="form3Example3" class="form-control form-control-lg"
+                                <input type="text" id="otp" class="form-control form-control-lg"
                                     placeholder="Enter your OTP" />
                             </div>
                 
@@ -52,7 +52,9 @@
                             <!-- </div> -->
                 
                             <div class="text-center text-lg-start mt-4 pt-2">
-                                <a href="dashboard.html" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Submit</a>
+                                <input id="send" type="button" value="submit">
+                                <!-- <button id="send" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Submit</button> -->
+                                <!-- <a href="dashboard.html" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Submit</a> -->
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Did't get otp? <a href="#!" class="link-primary" onclick="alert('OTP sended to your e-mail')">Re-send OTP</a></p>
                             </div>
                 
@@ -89,5 +91,16 @@
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+        <!-- api -->
+        <script src="./js/api/rooturl.js"></script>
+        <script src="./js/api/auth.js/verifyOtp.js"></script>
+        <script>
+            window.load=()=>{ if(localStorage.getItem('second')===true) location.replace('./dashboard.html') }
+
+            document.getElementById('send').addEventListener('click',()=>{
+                const otp = document.getElementById('otp').value
+                verifyOtp(otp)
+            })
+        </script>
     </body>
 </html>
