@@ -16,9 +16,12 @@ const verifyOtp=async(otp)=>{
         await res.json().then(res=>{ 
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('role', res.data.role)
-            localStorage.setItem('second', true)
+            if(res.data.role==="admin") location.replace('./dashboard.html')
+            else if(res.data.role==="ward-admin") {
+                console.log('yes');
+                location.replace('./wardAdminDashboard.html')
+            }
         })
-        location.replace('./dashboard.html')
     }else{
         alert('Wrong OTP')
     }

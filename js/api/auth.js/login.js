@@ -13,7 +13,6 @@ const login=async(phoneNumber)=>{
     if(res.status===200){
         await res.json().then(res=>{ 
             localStorage.setItem('token', res.data.token)
-            localStorage.setItem('first', true)
             localStorage.setItem('phoneNumber', phoneNumber)
         })
         location.replace('./otp.html')
