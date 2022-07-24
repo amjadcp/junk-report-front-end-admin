@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
 
 <head>
 
@@ -31,7 +31,7 @@
             <div id="content">
                 <!-- Begin Page Content -->
                 <div class="container-fluid h-custom">
-
+<br>
                     <section class="vh-100">
                         
                         <div class="container-fluid h-custom">
@@ -40,7 +40,8 @@
                                 <div class="col-md-9 col-lg-6 col-xl-5">
 
                                     <div class="d-sm-flex align-items-center justify-content-between">
-                                        <h1 class="h3 mb-0 text-gray-800">Calicut Co-operation</h1>
+                                        <br>
+                                        <h1 id="title" class="h3 mb-0 text-gray-800">Ward No. </h1>
                                     </div>
 
                                     <div class="" id="graph-card">
@@ -62,11 +63,22 @@
                                         </div>
                                     </div>
 
+                                    <div id="issue-card" class="card1 card mb-4">
+                                        <div class="card-header">
+                                            Issues
+                                        </div>
+                                        <div class="card-body row" id="issue" style="overflow-y: auto;">
+                                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
-                                    <div class="card2 card shadow mb-4">
+                                    <div class="card2 card shadow mb-4" id="count-board">
                                         <div class="card-header py-3">
                                             <h6 class="m-0 font-weight-bold text-primary col">Analytics</h6>
                                         </div>
@@ -82,7 +94,20 @@
                                             <br>
                                             <p id="completed"> Completed Requestes : </p>
                                             <p id="pending"> Pending Requestes : </p>
-                                            <p id="total"> Total : </p>
+                                            <p id="total"> Total Requestes : </p>
+                                            <p id="total-issues"> Total Issues : </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card2 card shadow mb-4" id="profile-board">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary col">Profile</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <br>
+                                            <p id="name"> Name : </p>
+                                            <p id="phone-no"> Phone Number : </p>
+                                            <p id="ward-no"> Ward Number : </p>
                                         </div>
                                     </div>
 
@@ -93,6 +118,7 @@
                                         <div class="card-body">
                                             <button class="btn btn-link" id="view-analytics">View Analytics</button> <br>
                                             <button class="btn btn-link" id="view-tickets">View Tickets</button> <br>
+                                            <button class="btn btn-link" id="view-issues">View Issues</button> <br>
                                             <button class="btn btn-link" id="profile">Profile</button> <br>
                                             <a class="btn btn-link" href="index.html">Logout</a>
                                         </div>
@@ -129,23 +155,41 @@
     <script src="./js/api/admin/createWard.js"></script>
     <script src="./js/api/ticket/ticketCount.js"></script>
     <script src="./js/api/ticket/getTicketForWardAdmin.js"></script>
+    <!-- <script src="./js/api/ticket/isCollected.js"></script> -->
+    <script src="./js/api/ward-admin/profile.js"></script>
+    <script src="./js/api/ward-admin/getIssuesByWard.js"></script>
     <script>
         window.onload=()=>{
             document.getElementById('ticket-card').style.display="none"
+            document.getElementById('issue-card').style.display="none"
+            document.getElementById('profile-board').style.display="none"
             ticketCount().then(e=>{
             document.getElementById('total').innerHTML += e.total
             document.getElementById('pending').innerHTML += e.pending
             document.getElementById('completed').innerHTML += e.completed
-            chart(e.total, e.pending, e.completed)
+            chart(e.total, e.pending, e.completed, e.issues)
         })
         }
         document.getElementById('view-tickets').addEventListener('click',()=>{ 
             document.getElementById('ticket-card').style.display="block"
             document.getElementById('graph-card').style.display="none"
-         })
+            document.getElementById('issue-card').style.display="none"
+        })
+        document.getElementById('view-issues').addEventListener('click',()=>{ 
+        document.getElementById('ticket-card').style.display="none"
+        document.getElementById('graph-card').style.display="none"
+        document.getElementById('issue-card').style.display="block"
+        })
         document.getElementById('view-analytics').addEventListener('click',()=>{ 
+            document.getElementById('issue-card').style.display="none"
             document.getElementById('ticket-card').style.display="none" 
             document.getElementById('graph-card').style.display="block"
+            document.getElementById('count-board').style.display="block" 
+            document.getElementById('profile-board').style.display="none"
+        })
+        document.getElementById('profile').addEventListener('click',()=>{ 
+            document.getElementById('count-board').style.display="none" 
+            document.getElementById('profile-board').style.display="block"
         })
         
     </script>

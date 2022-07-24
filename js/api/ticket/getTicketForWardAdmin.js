@@ -1,3 +1,18 @@
+const isCollected =async(ticketId)=>{
+    let token = localStorage.getItem('token')
+    let res = await fetch(`${ROOT_URL}/api/ticket/is-collect/${ticketId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        mode: 'cors',
+        // credentials: 'same-origin'
+    })
+    if(res.status===200) alert('The Ticket Mark as Completed')
+    else alert('Something went wrong')
+}
+
 const getTicketForWardAdmin=async()=>{
     let token = localStorage.getItem('token')
     let res = await fetch(`${ROOT_URL}/api/ticket/get-ticket`, {
@@ -25,7 +40,7 @@ const getTicketForWardAdmin=async()=>{
                         <p class="card-text">House No : ${ticket.houseNo}</p>
                         <p class="card-text">Waste : ${ticket.waste}</p>
                         <p class="card-text">Weight : ${ticket.weight}</p>
-                        <a href="#" class="btn btn-primary" value="${ticket._id}">Mark as Completed</a>
+                        <button onClick="isCollected(${ticket._id})" class="btn btn-primary" value="${ticket._id}">Mark as Completed</button>
                     </div>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;    
