@@ -1,6 +1,7 @@
-const profile=async()=>{
+const profile=async(wardNo='null')=>{
+    console.log('wardNo', wardNo);
     let token = localStorage.getItem('token')
-    let res = await fetch(`${ROOT_URL}/api/ward-admin/profile`, {
+    let res = await fetch(`${ROOT_URL}/api/common/profile/${wardNo}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -21,4 +22,5 @@ const profile=async()=>{
     }
 }
 
-profile()
+if(localStorage.getItem('role')==='admin') profile(localStorage.getItem('wardNo'))
+else profile()

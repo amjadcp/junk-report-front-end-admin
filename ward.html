@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Verify OTP</title>
+        <title>Ward List</title>
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link rel="stylesheet" href="./css/style.css">
@@ -35,6 +35,10 @@
         <script src="./js/api/rooturl.js"></script>
         <script src="./js/api/admin/getAllAdmin.js"></script>
         <script>
+          const storeWardNo =(wardNo)=>{
+            localStorage.setItem('wardNo', wardNo)
+            location.replace('./wardAdminDashboard.html')
+          }
           let admins = getAllAdmin()
           admins.then(admins=>{
               if(admins.length!==0){
@@ -43,14 +47,15 @@
                   `
                   <tr>
                     <th scope="row">${admin.wardNo}</th>
-                    <td><a href="">${admin.name}</a></td>
+                    <td>
+                      <button class="btn btn-link" id="create-ward" onClick=storeWardNo(${admin.wardNo})>${admin.name}</button>
+                    </td>
                     <td>+91${admin.phoneNumber}</td>
                   </tr>
                   `
                 })
               }
           })
-          
         </script>
     </body>
 </html>

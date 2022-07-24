@@ -1,7 +1,7 @@
-const getIssuesByWard=async()=>{
+const getIssuesByWard=async(wardNo='null')=>{
     console.log('hiii');
     let token = localStorage.getItem('token')
-    let res = await fetch(`${ROOT_URL}/api/common/get-issues`, {
+    let res = await fetch(`${ROOT_URL}/api/common/get-issues/${wardNo}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -39,4 +39,5 @@ const getIssuesByWard=async()=>{
 }
 {/* <button onClick="isCollected(${ticket._id})" class="btn btn-primary" value="${ticket._id}">Mark as Completed</button> */}
 
-getIssuesByWard()
+if(localStorage.getItem('role')==='admin') getIssuesByWard(localStorage.getItem('wardNo'))
+else getIssuesByWard()

@@ -13,9 +13,9 @@ const isCollected =async(ticketId)=>{
     else alert('Something went wrong')
 }
 
-const getTicketForWardAdmin=async()=>{
+const getTicket=async(wardNo='null')=>{
     let token = localStorage.getItem('token')
-    let res = await fetch(`${ROOT_URL}/api/ticket/get-ticket`, {
+    let res = await fetch(`${ROOT_URL}/api/ticket/get-ticket/${wardNo}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -30,6 +30,7 @@ const getTicketForWardAdmin=async()=>{
         if(res.data.length!==0){
             res.data.forEach(ticket=>{
                 console.log(ticket);
+                const btn = `<button onClick="isCollected(${ticket._id})" class="btn btn-primary" value="${ticket._id}">Mark as Completed</button>`
                 document.getElementById('ticket').innerHTML +=`
                 
                 <div class="card" style="width: 18rem;">
@@ -40,7 +41,7 @@ const getTicketForWardAdmin=async()=>{
                         <p class="card-text">House No : ${ticket.houseNo}</p>
                         <p class="card-text">Waste : ${ticket.waste}</p>
                         <p class="card-text">Weight : ${ticket.weight}</p>
-                        <button onClick="isCollected(${ticket._id})" class="btn btn-primary" value="${ticket._id}">Mark as Completed</button>
+                        ${localStorage.getItem('role')==='admin'?'':btn}
                     </div>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;    
@@ -56,4 +57,6 @@ const getTicketForWardAdmin=async()=>{
     // return data
     
 }
-getTicketForWardAdmin()
+
+if(localStorage.getItem('role')==='admin') getTicket(localStorage.getItem('wardNo'))
+else getTicket()
