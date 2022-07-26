@@ -15,7 +15,9 @@ const profile=async(wardNo='null')=>{
             console.log(res.data);
             let {name, phoneNumber, wardNo} = res.data
             document.getElementById('name').innerHTML += name
+            document.getElementById('new-name').value = name
             document.getElementById('phone-no').innerHTML += `+91${phoneNumber}`
+            document.getElementById('new-phoneNumber').value =phoneNumber
             document.getElementById('ward-no').innerHTML += wardNo
             document.getElementById('title').innerHTML += wardNo
         })

@@ -108,7 +108,25 @@
                                             <p id="name"> Name : </p>
                                             <p id="phone-no"> Phone Number : </p>
                                             <p id="ward-no"> Ward Number : </p>
+                                            <button class="btn btn-link" id="edit-profile">Edit</button> <br>
                                         </div>
+                                    </div>
+
+                                    <div class="form-popup" id="edit-profile-form">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Ward Admin's Name</label>
+                                                <input type="text" class="form-control" id="new-name" aria-describedby="emailHelp" placeholder="Enter The Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Ward Admin's Phone Number</label>
+                                                <input type="tel" pattern="[0-9]" class="form-control" id="new-phoneNumber" aria-describedby="emailHelp" placeholder="Enter The Phone Number">
+                                                <small id="emailHelp" class="form-text text-muted">Enter a valid phone number</small>
+                                            </div>
+                                            <input id="edit" value="Edit" type="button" class="btn btn-primary">
+                                            <!-- <button id="create" class="btn btn-primary">Create</button> -->
+                                          <button type="button" class="btn cancel" id="cancel">Cancel</button>
+                                        </form>
                                     </div>
 
                                     <div class="card2 card shadow mb-4">
@@ -157,11 +175,13 @@
     <script src="./js/api/common/getTicket.js"></script>
     <script src="./js/api/common/profile.js"></script>
     <script src="./js/api/common/getIssuesByWard.js"></script>
+    <script src="./js/api/admin/editProfile.js"></script>
     <script>
         window.onload=()=>{
             document.getElementById('ticket-card').style.display="none"
             document.getElementById('issue-card').style.display="none"
             document.getElementById('profile-board').style.display="none"
+            document.getElementById('edit-profile-form').style.display="none"
             ticketCount().then(e=>{
             document.getElementById('total').innerHTML += e.total
             document.getElementById('pending').innerHTML += e.pending
@@ -173,11 +193,13 @@
             document.getElementById('ticket-card').style.display="block"
             document.getElementById('graph-card').style.display="none"
             document.getElementById('issue-card').style.display="none"
+            document.getElementById('edit-profile-form').style.display="none"
         })
         document.getElementById('view-issues').addEventListener('click',()=>{ 
         document.getElementById('ticket-card').style.display="none"
         document.getElementById('graph-card').style.display="none"
         document.getElementById('issue-card').style.display="block"
+        document.getElementById('edit-profile-form').style.display="none"
         })
         document.getElementById('view-analytics').addEventListener('click',()=>{ 
             document.getElementById('issue-card').style.display="none"
@@ -185,10 +207,18 @@
             document.getElementById('graph-card').style.display="block"
             document.getElementById('count-board').style.display="block" 
             document.getElementById('profile-board').style.display="none"
+            document.getElementById('edit-profile-form').style.display="none"
         })
         document.getElementById('profile').addEventListener('click',()=>{ 
             document.getElementById('count-board').style.display="none" 
             document.getElementById('profile-board').style.display="block"
+            document.getElementById('edit-profile-form').style.display="none"
+        })
+        document.getElementById('edit-profile').addEventListener('click',()=>{ 
+            document.getElementById('edit-profile-form').style.display="block"
+        })
+        document.getElementById('cancel').addEventListener('click',()=>{ 
+            document.getElementById('edit-profile-form').style.display="none"
         })
         
     </script>
