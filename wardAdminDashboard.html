@@ -213,6 +213,7 @@
             document.getElementById('count-board').style.display="none" 
             document.getElementById('profile-board').style.display="block"
             document.getElementById('edit-profile-form').style.display="none"
+            if(localStorage.getItem('role')==='ward-admin') document.getElementById('edit-profile').style.display="none"
         })
         document.getElementById('edit-profile').addEventListener('click',()=>{ 
             document.getElementById('edit-profile-form').style.display="block"

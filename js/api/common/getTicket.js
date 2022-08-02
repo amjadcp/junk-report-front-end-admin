@@ -30,7 +30,8 @@ const getTicket=async(wardNo='null')=>{
         if(res.data.length!==0){
             res.data.forEach(ticket=>{
                 console.log(ticket);
-                const btn = `<button onClick="isCollected(${ticket._id})" class="btn btn-primary" value="${ticket._id}">Mark as Completed</button>`
+                // isCollected(${ticket._id})
+                const btn = `<button onClick=isCollected("${ticket._id}") class="btn btn-primary" value="${ticket._id}">Mark as Completed</button>`
                 document.getElementById('ticket').innerHTML +=`
                 
                 <div class="card" style="width: 18rem;">
