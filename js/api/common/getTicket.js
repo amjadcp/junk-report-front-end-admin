@@ -41,7 +41,6 @@ const getTicket=async(wardNo='null')=>{
                         <p class="card-text">Phone Number : ${ticket.phoneNumber}</p>
                         <p class="card-text">House No : ${ticket.houseNo}</p>
                         <p class="card-text">Waste : ${ticket.waste}</p>
-                        <p class="card-text">Weight : ${ticket.weight}</p>
                         ${localStorage.getItem('role')==='admin'?'':btn}
                     </div>
                 </div>

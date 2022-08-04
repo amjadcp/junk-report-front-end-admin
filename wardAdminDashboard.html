@@ -186,6 +186,7 @@
             document.getElementById('total').innerHTML += e.total
             document.getElementById('pending').innerHTML += e.pending
             document.getElementById('completed').innerHTML += e.completed
+            document.getElementById('issue').innerHTML += e.issues
             chart(e.total, e.pending, e.completed, e.issues)
         })
         }

@@ -104,6 +104,7 @@
                                             <p id="completed"> Completed Requestes : </p>
                                             <p id="pending"> Pending Requestes : </p>
                                             <p id="total"> Total : </p>
+                                            <p id="issue"> Issues : </p>
                                         </div>
                                     </div>
 
@@ -155,7 +156,8 @@
             document.getElementById('total').innerHTML += e.total
             document.getElementById('pending').innerHTML += e.pending
             document.getElementById('completed').innerHTML += e.completed
-            chart(e.total, e.pending, e.completed)
+            document.getElementById('issue').innerHTML += e.issues
+            chart(e.total, e.pending, e.completed, e.issues)
         })
         }
         document.getElementById('create-ward').addEventListener('click',()=>{ 
