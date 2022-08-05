@@ -152,13 +152,16 @@
     <script>
         window.onload=()=>{
             document.getElementById('form-card').style.display="none"
-            ticketCount().then(e=>{
-            document.getElementById('total').innerHTML += e.total
-            document.getElementById('pending').innerHTML += e.pending
-            document.getElementById('completed').innerHTML += e.completed
-            document.getElementById('issue').innerHTML += e.issues
-            chart(e.total, e.pending, e.completed, e.issues)
-        })
+            let date = localStorage.getItem('date')
+            if(date===undefined) date = 'null'
+            if(date!=='null')document.getElementById('date').value = date
+            ticketCount(date).then(e=>{
+                document.getElementById('total').innerHTML += e.total
+                document.getElementById('pending').innerHTML += e.pending
+                document.getElementById('completed').innerHTML += e.completed
+                document.getElementById('issue').innerHTML += e.issues
+                chart(e.total, e.pending, e.completed, e.issues)
+            })
         }
         document.getElementById('create-ward').addEventListener('click',()=>{ 
             document.getElementById('form-card').style.display="block"
@@ -175,6 +178,15 @@
             if(phoneNumber!==''&&name!==''&&wardNo!=='') createWard(wardNo, name, phoneNumber)
             else alert('Fill the form')
         })
+
+        document.getElementById('apply').addEventListener('click', ()=>{
+            let date = document.getElementById('date').value
+            if(date==='') date='null'
+            localStorage.setItem('date', date)
+            location.reload()
+        })
+
+        // document.getElementById('date')  
         
     </script>
 

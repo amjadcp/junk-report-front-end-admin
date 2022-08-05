@@ -182,13 +182,16 @@
             document.getElementById('issue-card').style.display="none"
             document.getElementById('profile-board').style.display="none"
             document.getElementById('edit-profile-form').style.display="none"
-            ticketCount().then(e=>{
-            document.getElementById('total').innerHTML += e.total
-            document.getElementById('pending').innerHTML += e.pending
-            document.getElementById('completed').innerHTML += e.completed
-            document.getElementById('issue').innerHTML += e.issues
-            chart(e.total, e.pending, e.completed, e.issues)
-        })
+            let date = localStorage.getItem('date')
+            if(date===undefined) date = 'null'
+            if(date!=='null')document.getElementById('date').value = date
+            ticketCount(date).then(e=>{
+                document.getElementById('total').innerHTML += e.total
+                document.getElementById('pending').innerHTML += e.pending
+                document.getElementById('completed').innerHTML += e.completed
+                document.getElementById('issue').innerHTML += e.issues
+                chart(e.total, e.pending, e.completed, e.issues)
+            })
         }
         document.getElementById('view-tickets').addEventListener('click',()=>{ 
             document.getElementById('ticket-card').style.display="block"
@@ -221,6 +224,12 @@
         })
         document.getElementById('cancel').addEventListener('click',()=>{ 
             document.getElementById('edit-profile-form').style.display="none"
+        })
+        document.getElementById('apply').addEventListener('click', ()=>{
+            let date = document.getElementById('date').value
+            if(date==='') date='null'
+            localStorage.setItem('date', date)
+            location.reload()
         })
         
     </script>
