@@ -1,7 +1,7 @@
-const getIssuesByWard=async(wardNo='null')=>{
+const getCompletedIssuesByWard=async(wardNo='null')=>{
     console.log('hiii');
     let token = localStorage.getItem('token')
-    let res = await fetch(`${ROOT_URL}/api/common/get-issues/${wardNo}`, {
+    let res = await fetch(`${ROOT_URL}/api/common/get-completed-issues/${wardNo}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -12,11 +12,10 @@ const getIssuesByWard=async(wardNo='null')=>{
     })
     if(res.status===200){
         await res.json().then(res=>{
-            console.log('jjjjjjjjjjj',res.data);
+            console.log(res.data);
             document.getElementById('total-issues').innerHTML += res.data.length
             res.data.forEach(ticket=>{
-                console.log('this is the log', ticket);
-                document.getElementById('issue').innerHTML +=`
+                document.getElementById('completed-issue').innerHTML +=`
                     
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -34,10 +33,11 @@ const getIssuesByWard=async(wardNo='null')=>{
                     &nbsp;&nbsp;&nbsp;&nbsp; 
                     `
             })
+            
         })
     }
 }
 {/* <button onClick="isCollected(${ticket._id})" class="btn btn-primary" value="${ticket._id}">Mark as Completed</button> */}
 
-if(localStorage.getItem('role')==='admin') getIssuesByWard(localStorage.getItem('wardNo'))
-else getIssuesByWard()
+if(localStorage.getItem('role')==='admin') getCompletedIssuesByWard(localStorage.getItem('wardNo'))
+else getCompletedIssuesByWard()

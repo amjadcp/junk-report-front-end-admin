@@ -55,22 +55,36 @@
                                     <div id="ticket-card" class="card1 card mb-4">
                                         <div class="card-header">
                                             Tickets
+                                            <button class="btn btn-link" id="view-completed-tickets">Completed Tickets</button> <br>
                                         </div>
                                         <div class="card-body row" id="ticket" style="overflow-y: auto;">
-                                            &nbsp;&nbsp;&nbsp;&nbsp; 
-                                            &nbsp;&nbsp;&nbsp;&nbsp; 
-                                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div id="completed-ticket-card" class="card1 card mb-4">
+                                        <div class="card-header">
+                                            Completed Tickets
+                                        </div>
+                                        <div class="card-body row" id="completed-ticket" style="overflow-y: auto;">
+                                            
                                         </div>
                                     </div>
 
                                     <div id="issue-card" class="card1 card mb-4">
                                         <div class="card-header">
                                             Issues
+                                            <button class="btn btn-link" id="view-completed-issues">Completed Issues</button> <br>
                                         </div>
-                                        <div class="card-body row" id="issue" style="overflow-y: auto;">
-                                            &nbsp;&nbsp;&nbsp;&nbsp; 
-                                            &nbsp;&nbsp;&nbsp;&nbsp; 
-                                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                                        <div class="card-body row" id="issue" style="overflow-y: auto;"></div>
+                                    </div>
+
+                                    <div id="completed-issue-card" class="card1 card mb-4">
+                                        <div class="card-header">
+                                            Solved Issues
+                                        </div>
+                                        <div class="card-body row" id="completed-issue" style="overflow-y: auto;">
+                                            
                                         </div>
                                     </div>
 
@@ -173,13 +187,17 @@
     <script src="./js/api/admin/createWard.js"></script>
     <script src="./js/api/common/ticketCount.js"></script>
     <script src="./js/api/common/getTicket.js"></script>
+    <script src="./js/api/common/getCompletedTicketByWard.js"></script>
     <script src="./js/api/common/profile.js"></script>
     <script src="./js/api/common/getIssuesByWard.js"></script>
+    <script src="./js/api/common/getCompletedIssueByWard.js"></script>
     <script src="./js/api/admin/editProfile.js"></script>
     <script>
         window.onload=()=>{
             document.getElementById('ticket-card').style.display="none"
+            document.getElementById('completed-ticket-card').style.display="none"
             document.getElementById('issue-card').style.display="none"
+            document.getElementById('completed-issue-card').style.display="none"
             document.getElementById('profile-board').style.display="none"
             document.getElementById('edit-profile-form').style.display="none"
             let date = localStorage.getItem('date')
@@ -197,6 +215,24 @@
             document.getElementById('ticket-card').style.display="block"
             document.getElementById('graph-card').style.display="none"
             document.getElementById('issue-card').style.display="none"
+            document.getElementById('completed-ticket-card').style.display="none"
+            document.getElementById('completed-issue-card').style.display="none"
+            document.getElementById('edit-profile-form').style.display="none"
+        })
+        document.getElementById('view-completed-tickets').addEventListener('click',()=>{ 
+            document.getElementById('ticket-card').style.display="none"
+            document.getElementById('graph-card').style.display="none"
+            document.getElementById('issue-card').style.display="none"
+            document.getElementById('completed-ticket-card').style.display="block"
+            document.getElementById('completed-issue-card').style.display="none"
+            document.getElementById('edit-profile-form').style.display="none"
+        })
+        document.getElementById('view-completed-issues').addEventListener('click',()=>{ 
+            document.getElementById('ticket-card').style.display="none"
+            document.getElementById('graph-card').style.display="none"
+            document.getElementById('issue-card').style.display="none"
+            document.getElementById('completed-ticket-card').style.display="none"
+            document.getElementById('completed-issue-card').style.display="block"
             document.getElementById('edit-profile-form').style.display="none"
         })
         document.getElementById('view-issues').addEventListener('click',()=>{ 
@@ -204,6 +240,8 @@
         document.getElementById('graph-card').style.display="none"
         document.getElementById('issue-card').style.display="block"
         document.getElementById('edit-profile-form').style.display="none"
+        document.getElementById('completed-ticket-card').style.display="none"
+        document.getElementById('completed-issue-card').style.display="none"
         })
         document.getElementById('view-analytics').addEventListener('click',()=>{ 
             document.getElementById('issue-card').style.display="none"
@@ -212,6 +250,8 @@
             document.getElementById('count-board').style.display="block" 
             document.getElementById('profile-board').style.display="none"
             document.getElementById('edit-profile-form').style.display="none"
+            document.getElementById('completed-ticket-card').style.display="none"
+            document.getElementById('completed-issue-card').style.display="none"
         })
         document.getElementById('profile').addEventListener('click',()=>{ 
             document.getElementById('count-board').style.display="none" 
