@@ -208,7 +208,7 @@
                 document.getElementById('total').innerHTML += e.total
                 document.getElementById('pending').innerHTML += e.pending
                 document.getElementById('completed').innerHTML += e.completed
-                document.getElementById('total-issues').innerHTML += e.issues
+                document.getElementById('total-issues').innerHTML = `Total Issues : ${e.issues}`
                 chart(e.total, e.pending, e.completed, e.issues)
             })
         }
