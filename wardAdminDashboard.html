@@ -204,6 +204,7 @@
             if(date===undefined) date = 'null'
             if(date!=='null')document.getElementById('date').value = date
             ticketCount(date).then(e=>{
+                console.log('issues : ', e.issues);
                 document.getElementById('total').innerHTML += e.total
                 document.getElementById('pending').innerHTML += e.pending
                 document.getElementById('completed').innerHTML += e.completed
